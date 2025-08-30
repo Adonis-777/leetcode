@@ -1,0 +1,62 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+void job(vector<vector<int>> &mat, int i, int j){
+    
+    for(int k = 0; k < mat.size(); k++){
+        mat[k][j] = 0;
+    }
+    
+    for(int k = 0; k < mat[0].size(); k++){
+        mat[i][k] = 0;
+    }
+    
+    
+}
+
+int main(){
+    
+    int n;
+    cin >> n;
+    
+    
+    vector<vector<int>> mat(n, vector<int> (n));
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < n; j++){
+            cin >> mat[i][j];
+        }
+    }
+    
+    
+    multiset<int> flag_r;
+    multiset<int> flag_c;
+    
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < n; j++){
+            
+            if(flag_r.find(i) != flag_r.end() || flag_c.find(j) != flag_c.end()){
+                continue;
+            }
+            
+            
+            else if(mat[i][j] == 0 && (flag_r.find(i) == flag_r.end() || flag_c.find(j) == flag_r.end())){
+                
+                flag_r.insert(i);
+                flag_c.insert(j);
+                job(mat, i, j);
+                
+            } 
+            
+            
+        }
+    }
+    
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < n; j++){
+            cout << mat[i][j] << " ";
+        }
+        
+        cout << endl;
+    }
+    
+}
