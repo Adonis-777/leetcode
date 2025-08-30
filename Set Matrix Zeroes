@@ -1,62 +1,31 @@
-#include<bits/stdc++.h>
-using namespace std;
+class Solution {
+public:
+    void setZeroes(vector<vector<int>>& mat) {
+        int r = mat.size();
+        if (r == 0) return; // Handle empty matrix
+        int c = mat[0].size();
+        if (c == 0) return; // Handle empty row
 
-void job(vector<vector<int>> &mat, int i, int j){
-    
-    for(int k = 0; k < mat.size(); k++){
-        mat[k][j] = 0;
-    }
-    
-    for(int k = 0; k < mat[0].size(); k++){
-        mat[i][k] = 0;
-    }
-    
-    
-}
+        vector<bool> row_has_zero(r, false);
+        vector<bool> col_has_zero(c, false);
 
-int main(){
-    
-    int n;
-    cin >> n;
-    
-    
-    vector<vector<int>> mat(n, vector<int> (n));
-    for(int i = 0; i < n; i++){
-        for(int j = 0; j < n; j++){
-            cin >> mat[i][j];
-        }
-    }
-    
-    
-    multiset<int> flag_r;
-    multiset<int> flag_c;
-    
-    for(int i = 0; i < n; i++){
-        for(int j = 0; j < n; j++){
-            
-            if(flag_r.find(i) != flag_r.end() || flag_c.find(j) != flag_c.end()){
-                continue;
+        // First Pass: Identify which rows and columns need to be zeroed
+        for (int i = 0; i < r; ++i) {
+            for (int j = 0; j < c; ++j) {
+                if (mat[i][j] == 0) {
+                    row_has_zero[i] = true;
+                    col_has_zero[j] = true;
+                }
             }
-            
-            
-            else if(mat[i][j] == 0 && (flag_r.find(i) == flag_r.end() || flag_c.find(j) == flag_r.end())){
-                
-                flag_r.insert(i);
-                flag_c.insert(j);
-                job(mat, i, j);
-                
-            } 
-            
-            
+        }
+
+        // Second Pass: Modify the matrix based on the identified rows/columns
+        for (int i = 0; i < r; ++i) {
+            for (int j = 0; j < c; ++j) {
+                if (row_has_zero[i] || col_has_zero[j]) {
+                    mat[i][j] = 0;
+                }
+            }
         }
     }
-    
-    for(int i = 0; i < n; i++){
-        for(int j = 0; j < n; j++){
-            cout << mat[i][j] << " ";
-        }
-        
-        cout << endl;
-    }
-    
-}
+};
