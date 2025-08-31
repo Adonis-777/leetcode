@@ -1,0 +1,29 @@
+class Solution {
+public:
+    bool check(vector<int> &a, int h, int t){
+
+        int time = 0;
+        for(int i = 0; i < a.size(); i++){
+            time += (a[i] + t - 1) / t;
+        }
+
+        return (time <= h);
+
+    }
+    int minEatingSpeed(vector<int>& a, int h) {
+        int l = 1, r = 1e9;
+
+        while(l < r){
+            int mid = l + (r - l) / 2;
+
+            if(check(a, h, mid)){
+                r = mid;
+            }
+            else{
+                l = mid + 1;
+            }
+        }
+
+        return l;
+    }
+};
