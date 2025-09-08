@@ -1,0 +1,33 @@
+class Solution {
+public:
+    bool check(int n){
+        while(n > 0){
+            int rem = n % 10;
+            if(rem == 0){
+                return false;
+            }
+            n /= 10;
+        }
+
+        return true;
+
+    }
+    vector<int> getNoZeroIntegers(int n) {
+        int a, b;
+
+        for(int i = 1; i < n; i++){
+            if(!check(i)) continue;
+            else{
+                a = i;
+                b = n - i;
+                if(!check(b)) continue;
+                break;
+            }
+            
+        }
+        
+
+        return {a, b};
+        
+    }
+};
