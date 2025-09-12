@@ -1,0 +1,31 @@
+class Solution {
+public:
+    string CustomSwap(string *s, int start, int end) {
+        string temp = "";
+        for (int i = end; i >= start; i--) {
+            temp += (*s)[i];
+        }
+        return temp;
+    }
+
+    string reverseWords(string s) {
+        int n = s.size();
+        string ans = "";
+        int f = 0, start = 0;
+
+        for (int i = 0; i <= n; i++) {
+            if ((i == n || s[i] == ' ') && f == 1) {
+                int end = i - 1;
+                ans += CustomSwap(&s, start, end);
+                if (i != n) ans += ' '; // to not add space at beginneing of the string and to maintain space in between the words
+                
+                f = 0;
+            } else if (s[i] != ' ' && f == 0) {
+                f = 1;
+                start = i;
+            }
+        }
+
+        return ans;
+    }
+};
