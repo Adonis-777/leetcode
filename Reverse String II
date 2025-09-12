@@ -1,0 +1,28 @@
+class Solution {
+public:
+    void customSwap(string *s, int start, int end){
+        int swap = end;
+        int last = (start + end) / 2;
+        for(int i = start; i <= last; i++){
+           char temp = (*s)[i];
+           (*s)[i] = (*s)[swap];
+           (*s)[swap--] = temp;
+        }
+    }
+    string reverseStr(string s, int k) {
+
+      //  if(k > s.size()) return s;
+        
+        for(int i = 0; i < s.size(); i++){
+            if(i == 0 || (i % (2 * k)) == 0){
+                int end = ((i + k - 1) <= (s.size() - 1)) ? (i + k - 1) : (s.size() - 1);
+                customSwap(&s, i, end);
+            }
+            else{
+                continue;
+            }
+        }
+
+        return s;
+    }
+};
