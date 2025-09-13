@@ -1,0 +1,32 @@
+class Solution {
+public:
+    bool canConstruct(string Ran, string Mag) {
+
+        map<char, int> m;
+        map<char, int> r;
+
+        for(int i = 0; i < Mag.size(); i++){
+
+            m[Mag[i]]++;
+
+        }
+        for(int i = 0; i < Ran.size(); i++){
+
+            r[Ran[i]]++;
+
+        }
+
+        for(const auto&pair : r){
+            if(m.find(pair.first) != m.end()){
+                auto it = m.find(pair.first);
+
+                if(pair.second > it->second) return false;
+            }
+            else{
+                return false;
+            }
+        }
+
+        return true;
+    }
+};
