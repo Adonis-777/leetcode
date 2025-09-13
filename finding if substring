@@ -1,0 +1,25 @@
+class Solution {
+public:
+    bool canConstruct(string Ran, string Mag) {
+        int i = 0, j = 0;
+
+        int endA = Mag.size(), endB = Ran.size();
+        // A -> Mag, B -> Ransom
+
+        while(i < endA && j < endB){
+
+            if(Mag[i] == Ran[j]){
+                j++;
+            }
+            else{
+                j = 0;
+            }
+
+            i++;
+
+        }
+
+        return (j == endB);
+        
+    }
+};
