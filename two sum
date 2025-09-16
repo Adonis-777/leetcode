@@ -1,0 +1,19 @@
+class Solution {
+public:
+
+    
+    vector<int> twoSum(vector<int>& a, int target) {
+
+        int n = a.size();
+        for(int i = 0; i < n; i++){
+           // if(a[i] > target) continue;
+            int x = target - a[i];
+            for(int j = i + 1; j < n; j++){
+                if(a[j] == x){
+                    return {i, j};
+                }
+            }
+        }
+        
+    }
+};
