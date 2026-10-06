@@ -56,12 +56,12 @@ public:
 
         }
 
-        sort(ss.begin(), ss.end());
+        sort(ss.rbegin(), ss.rend());
         string ans = "";
         for(string s : ss){
             if(check(s1, s2, s)){
                 ans = s;
-                //break;
+                break;
             }
         }
 
