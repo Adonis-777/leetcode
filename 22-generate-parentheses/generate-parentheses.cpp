@@ -1,5 +1,6 @@
 class Solution {
 public:
+
     vector<string> samplespace;
     string token = "";
 
